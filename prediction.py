@@ -50,7 +50,7 @@ def preprocess_data(raw_data):
 
 
 # Load the saved model
-pipeline = load('/Users/joshuathomas/Projects/goatgrade-ml/best_model.joblib')
+model = load('/Users/joshuathomas/Projects/goatgrade-ml/best_model.joblib')
 
 # Load the new dataset for 2024
 with open('/Users/joshuathomas/Projects/goatgrade-ml/raw_data/raw_stats2024.json') as file:
@@ -63,7 +63,7 @@ features = ['PTS', 'AST', 'TRB', 'FG%', 'FT%', '3P%', 'STL', 'BLK', 'MP', 'PER',
 X_2024 = df_2024_preprocessed[features]
 
 # Predict using the loaded pipeline
-predictions = pipeline.predict_proba(X_2024)[:, 1]
+predictions = model.predict_proba(X_2024)[:, 1]
 
 # Print the range of prediction probabilities
 print("Prediction probabilities range:", np.min(predictions), "to", np.max(predictions))
